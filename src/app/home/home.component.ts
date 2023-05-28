@@ -24,9 +24,9 @@ export class HomeComponent {
 
   //inputs
   type:string=""
-  people=1
+  people=0
   min_cost=0
-  max_cost=10
+  max_cost=8
   min_accessibility=0
   max_accessibility=10
 
@@ -44,29 +44,50 @@ export class HomeComponent {
 
   showSpinner=false;
 
+  formatPeople(value:number): string{
+    if(value==0) return "Random"
+    else return value.toString()
+  }
+  formatCost(value: number): string {
+    if(value == 0) return "Free"
+    if(value < 4) return "$"
+    if(value < 7) return "$$"
+    else return "$$$"
+  }
+  formatAccessibility(value: number): string {
+    if(value < 4) return "Easy"
+    if(value < 7) return "Moderate"
+    else return "Hard"
+  }
+
   search(){
-    console.log("Type "+this.type)
-    console.log("peope "+this.people)
-    console.log("money "+this.min_cost+" "+this.max_cost)
+    this.showSpinner=true
     this.sub = this.boredService.getFromOptions(this.type,this.people,this.min_cost,this.max_cost,this.min_accessibility,this.max_accessibility)
     .subscribe({
       next : bored => {
-        this.showSpinner=true
         this.boredResult = bored;
-        console.log(bored)
+        console.log(this.boredResult)
       },
       error : err => console.log(err),
       complete: () => this.showSpinner=false
     })
   }
   random(){
+    this.showSpinner=true
     this.sub = this.boredService.getRandom().subscribe({
       next : bored => {
-        this.showSpinner=true
         this.boredResult = bored;
       },
       error : err => console.log(err),
       complete: () => this.showSpinner=false
     })
+  }
+  reset(){
+    this.type=""
+    this.people=0
+    this.min_cost=0
+    this.max_cost=8
+    this.min_accessibility=0
+    this.max_accessibility=10
   }
 }

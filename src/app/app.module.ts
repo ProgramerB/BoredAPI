@@ -9,13 +9,17 @@ import { HomeComponent } from './home/home.component';
 import { DemoMaterialModule } from './material-module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CostPipe } from './cost.pipe';
+import { AccessibilityPipe } from './accessibility.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    CostPipe,
+    AccessibilityPipe
   ],
   imports: [
     BrowserModule,

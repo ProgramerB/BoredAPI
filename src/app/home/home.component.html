@@ -1,6 +1,6 @@
 <div class="container mt-3">
     <div class="row">
-        <div class="col-4 offset-2">
+        <div class="col-4">
             <div class="row">
                 <mat-form-field>
                     <mat-label>Type</mat-label>
@@ -13,78 +13,82 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <button mat-raised-button (click)="random()">
-                        <mat-icon>shuffle</mat-icon>
-                        Random
-                    </button>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-icon>groups</mat-icon>
+                            <mat-slider min="0" max="8" step="1" discrete [displayWith]="formatPeople">
+                                <input matSliderThumb [(ngModel)]="people">
+                            </mat-slider>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-icon>paid</mat-icon>
+                            <mat-slider min="0" max="8" step="1" discrete [displayWith]="formatCost">
+                                <input matSliderStartThumb [(ngModel)]="min_cost">
+                                <input matSliderEndThumb [(ngModel)]="max_cost" >
+                            </mat-slider>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-icon>accessible</mat-icon>
+                            <mat-slider min="0" max="10" step="1" discrete [displayWith]="formatAccessibility">
+                                <input matSliderStartThumb [(ngModel)]="min_accessibility">
+                                <input matSliderEndThumb [(ngModel)]="max_accessibility">
+                            </mat-slider>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-6">
-                    <button mat-raised-button color="primary" (click)="search()">
-                        <mat-icon>search</mat-icon>
-                        Search
-                    </button>
+                    <div class="row">
+                        <button mat-raised-button (click)="reset()">
+                            <mat-icon>restart_alt</mat-icon>
+                            Reset
+                        </button>
+                    </div>
+                    <div class="row mt-3">
+                        <button mat-raised-button (click)="random()">
+                            <mat-icon>shuffle</mat-icon>
+                            Random
+                        </button>
+                    </div>
+                    <div class="row mt-3">
+                        <button mat-raised-button color="primary" (click)="search()">
+                            <mat-icon>search</mat-icon>
+                            Search
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </div>     
         </div>
-        <div class="col-5 offset-1">
-            <div class="row">
-                <div class="col-12">
-                    <mat-icon>groups</mat-icon>
-                    <mat-slider min="0" max="10" step="1" discrete >
-                        <input matSliderThumb [(ngModel)]="people">
-                    </mat-slider>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <mat-icon>paid</mat-icon>
-                    <mat-slider min="0" max="10" step="1" discrete >
-                        <input matSliderStartThumb [(ngModel)]="min_cost">
-                        <input matSliderEndThumb [(ngModel)]="max_cost" >
-                    </mat-slider>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <mat-icon>accessible</mat-icon>
-                    <mat-slider min="0" max="10" step="1" discrete >
-                        <input matSliderStartThumb [(ngModel)]="min_accessibility">
-                        <input matSliderEndThumb [(ngModel)]="max_accessibility">
-                    </mat-slider>
-                </div>
-            </div>
-              
+        <div class="col-6 offset-1">
+            <div class="row" *ngIf="boredResult.activity">
+                <mat-card>
+                    <mat-card-header>
+                      <mat-card-title>{{boredResult.activity | uppercase}}</mat-card-title>
+                      <mat-card-subtitle>{{boredResult.type | uppercase}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <br/>
+                      <p>Participants: {{boredResult.participants}}</p>
+                      <p>Cost: {{boredResult.price | cost}}</p>
+                      <p>Accessibile: {{boredResult.accessibility | accessibility}}</p>
+                      <p *ngIf="boredResult.link">Link: {{boredResult.link}}</p>
+                      <!-- <p>{{boredResult.key}}</p> -->
+                      <!-- <mat-spinner diameter="50"></mat-spinner> -->
+                      <br/>
+                    </mat-card-content>
+                    <!-- <mat-card-actions>
+                      <button mat-button>LIKE</button>
+                      <button mat-button>SHARE</button>
+                    </mat-card-actions> -->
+                    <mat-card-footer>
+                        <mat-progress-bar *ngIf="showSpinner" mode="indeterminate"></mat-progress-bar>
+                    </mat-card-footer>
+                  </mat-card>
+              </div>
         </div>
       </div>
-      <div class="row">
-            
-      </div>
-
-      <div class="row">
-        
-      </div>
-      <div class="row" *ngIf="boredResult.activity">
-        <mat-card>
-            <mat-card-header>
-              <mat-card-title>{{boredResult.activity}}</mat-card-title>
-              <mat-card-subtitle>{{boredResult.type}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              <p>Participants: {{boredResult.participants}}</p>
-              <p>Price: {{boredResult.price}}</p>
-              <p>Link: {{boredResult.link}}</p>
-              <p>Accessibility: {{boredResult.accessibility}}</p>
-              <p>{{boredResult.key}}</p>
-              <!-- <mat-spinner diameter="50"></mat-spinner> -->
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-            <mat-card-footer>
-                <mat-progress-bar *ngIf="showSpinner" mode="indeterminate"></mat-progress-bar>
-            </mat-card-footer>
-          </mat-card>
-          
-      </div>
+      
 </div>
