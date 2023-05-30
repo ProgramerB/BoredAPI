@@ -1,1 +1,6 @@
-/* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
+.body{
+    height: 100vh;
+}
+/* .mat-app-background{
+    transition: all 1s;
+} */

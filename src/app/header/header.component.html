@@ -1,8 +1,17 @@
 <mat-toolbar>
-    <span>Bored API</span>
+  <div class="container">
+    <div class="row">
+      <div class="col-11">
+        <span>Bored API</span>
+      </div>
+      <div class="col-1">
+        <mat-slide-toggle [(ngModel)]="isChecked" (change)="themeService.toggle()">Dark Mode</mat-slide-toggle>
+      </div>
+    </div>
+  </div>
+    
     <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button> -->
-  </mat-toolbar>
-  
-  <!-- <mat-slide-toggle>Toggle me!</mat-slide-toggle> -->
+    
+</mat-toolbar>
