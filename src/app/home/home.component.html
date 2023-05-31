@@ -1,6 +1,6 @@
 <div class="container mt-3">
     <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-md-4">
             <div class="row">
                 <mat-form-field>
                     <mat-label>Type</mat-label>
@@ -62,7 +62,7 @@
                 </div>
             </div>     
         </div>
-        <div class="col-6 offset-1">
+        <div class="col-12 col-md-6 offset-md-1 mt-3 mt-md-0">
             <div class="row" *ngIf="boredResult.activity">
                 <mat-card>
                     <mat-card-header>
@@ -88,7 +88,7 @@
                             </mat-list-item>
                             <mat-list-item *ngIf="boredResult.link">
                                 <mat-icon matListItemIcon>link</mat-icon>
-                                <div matListItemTitle> Link: {{boredResult.link}}</div>
+                                <div matListItemTitle> Link: <a target="_blank" href="{{boredResult.link}}">{{boredResult.link}}</a></div>
                             </mat-list-item>
                         </mat-list>
                            
