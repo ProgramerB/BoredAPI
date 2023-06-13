@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError } from "rxjs";
 import { bored } from './bored';
 
-const boredUrl= "http://www.boredapi.com/api/activity/"
+const boredUrl= "https://www.boredapi.com/api/activity/"
 
 @Injectable({
   providedIn: 'root'
