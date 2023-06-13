@@ -1,36 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+$light-theme: mat.define-light-theme((
+ color: (
+   primary: mat.define-palette(mat.$blue-palette, 500),
+   accent: mat.define-palette(mat.$pink-palette, A200, A100, A400),
+   warn: mat.define-palette(mat.$red-palette),
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+$dark-theme: mat.define-dark-theme((
+ color: (
+   primary: mat.define-palette(mat.$deep-purple-palette),
+   accent: mat.define-palette(mat.$green-palette),
+ ),
+  
+));
+
+@include mat.all-component-themes($light-theme);
+
+.dark {
+    @include mat.all-component-colors($dark-theme);
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-/* @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; */
-/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
-// @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
-/* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
-
-// Import library functions for theme creation.
-@import '@angular/material/theming';
- 
-// Include non-theme styles for core.
-@include mat-core();
- 
-// Define the application's custom theme
-$primary: mat-palette($mat-blue);
-$accent:  mat-palette($mat-pink, A200, A100, A400);
-$theme: mat-light-theme($primary, $accent);
- 
-// Regular (light theme)
-// Include theme styles for Angular Material components
-// and include theme styles for your custom components.
-@include angular-material-theme($theme);
-
-// Define the application's dark theme
-$primary-dark: mat-palette($mat-deep-purple);
-$accent-dark:  mat-palette($mat-green, A200, A100, A400);
- 
-// Use mat-dark-theme instead of mat-light-theme
-$dark-theme: mat-dark-theme($primary-dark, $accent-dark);
-
-.dark {
-    @include angular-material-theme($dark-theme);
-}
